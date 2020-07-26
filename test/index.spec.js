@@ -28,4 +28,15 @@ describe('case-key', () => {
     expect(console.info.calledWith('helloWorld')).to.be.true;
     done();
   });
+
+  it('strict key should run correctly', done => {
+    console.info(Object.keys(camelcase({ 'hello.world': 'case' }))[0]);
+    expect(console.info.calledWith('hello.world')).to.be.true;
+    console.info(Object.keys(camelcase({ 'hello.world': 'case' }, { strictKey: false }))[0]);
+    expect(console.info.calledWith('helloWorld')).to.be.true;
+    console.info(Object.keys(camelcase({ 'hello.world': 'case' }, { strictKey: true }))[0]);
+    expect(console.info.calledWith('hello.world')).to.be.true;
+    expect(console.info.calledThrice).to.be.true;
+    done();
+  });
 });

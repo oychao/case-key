@@ -4,6 +4,7 @@ import snakeCase from 'to-snake-case';
 interface KeyCaseOptions {
   deep: boolean;
   exclude: Array<RegExp>;
+  strictKey?: boolean;
 }
 
 interface InternalKeyCaseOptions extends KeyCaseOptions {
@@ -69,13 +70,14 @@ function matches(patterns: Array<RegExp>, value: string) {
 
 function keyCaseFac(trans: (val: string) => string) {
   return function (obj: object, rawOptions?: KeyCaseOptions) {
-    const options = Object.assign({ deep: true, exclude: [] }, rawOptions);
+    const options = Object.assign({ deep: true, exclude: [], strictKey: true }, rawOptions);
 
     return mapObj(
       obj,
       function (key, val) {
         const shouldSkip = matches(options.exclude, key);
-        return [shouldSkip ? key : trans(key), val, shouldSkip];
+        const shouldKeep = options.strictKey && (key.includes('.') || key.includes('/'));
+        return [shouldKeep || shouldSkip ? key : trans(key), val, shouldSkip];
       },
       options
     );

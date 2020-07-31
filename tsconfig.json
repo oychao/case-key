@@ -18,9 +18,16 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "rootDir": "./",
+    "rootDir": "src",
     "baseUrl": "./src"
   },
-  "exclude": ["node_modules", "build", "rollup.config.js", "test/*.js", "bin/*.js", "src/pages/home/index.js"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "rollup.config.js",
+    "test/*.js",
+    "bin/*.js",
+    "src/pages/home/index.js"
+  ],
   "typeRoots": ["node", "node_modules/@types", "./typings"]
 }

@@ -2,8 +2,8 @@ import camelCase from 'camelcase';
 import snakeCase from 'to-snake-case';
 
 interface KeyCaseOptions {
-  deep: boolean;
-  exclude: Array<RegExp>;
+  deep?: boolean;
+  exclude?: Array<RegExp>;
   strictKey?: boolean;
 }
 

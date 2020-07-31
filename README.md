@@ -30,7 +30,7 @@ camelcase({
     }
   }
 }, {
-  exclude: /case/
+  exclude: [/case/]
 });
 
 /*

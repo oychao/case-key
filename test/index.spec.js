@@ -23,9 +23,30 @@ describe('case-key', () => {
   });
 
   it('camelcase should run correctly', done => {
-    console.info(Object.keys(camelcase({ 'hello_world': 'case' }))[0]);
+    console.info(Object.keys(camelcase({ hello_world: 'case' }))[0]);
     expect(console.info.calledOnce).to.be.true;
     expect(console.info.calledWith('helloWorld')).to.be.true;
+    done();
+  });
+
+  it('exclude options should run correctly', done => {
+    const transformedObj = camelcase(
+      {
+        hello_world: {
+          camel_case: {
+            some_key: 123,
+          },
+        },
+      },
+      {
+        exclude: [/case/],
+      }
+    );
+    console.info(Object.keys(transformedObj)[0]);
+    expect(console.info.calledWith('helloWorld')).to.be.true;
+    console.info(Object.keys(transformedObj.helloWorld)[0]);
+    expect(console.info.calledWith('camel_case')).to.be.true;
+    expect(console.info.calledTwice).to.be.true;
     done();
   });
 

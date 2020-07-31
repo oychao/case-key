@@ -1,6 +1,6 @@
 {
   "name": "case-key",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "main": "./bin/index.js",
   "typings": "./bin/index.d.ts",
   "author": {
@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf bin && rollup -c",
     "test": "mocha --require babel-register --require babel-polyfill test/**/*.spec.js",
     "prepare": "npm run build",
     "watch": "npm-watch build"

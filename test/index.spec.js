@@ -50,6 +50,13 @@ describe('case-key', () => {
     done();
   });
 
+  it('exclude option could accept a single regex', done => {
+    console.info(Object.keys(camelcase({ hello_world: 'case' }, { exclude: /hello/ }))[0]);
+    expect(console.info.calledOnce).to.be.true;
+    expect(console.info.calledWith('hello_world')).to.be.true;
+    done();
+  });
+
   it('strict key should run correctly', done => {
     console.info(Object.keys(camelcase({ 'hello.world': 'case' }))[0]);
     expect(console.info.calledWith('hello.world')).to.be.true;

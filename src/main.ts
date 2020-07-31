@@ -3,7 +3,7 @@ import snakeCase from 'to-snake-case';
 
 interface KeyCaseOptions {
   deep?: boolean;
-  exclude?: Array<RegExp>;
+  exclude?: Array<RegExp> | RegExp;
   strictKey?: boolean;
 }
 
@@ -71,6 +71,9 @@ function matches(patterns: Array<RegExp>, value: string) {
 function keyCaseFac(trans: (val: string) => string) {
   return function (obj: object, rawOptions?: KeyCaseOptions) {
     const options = Object.assign({ deep: true, exclude: [], strictKey: true }, rawOptions);
+    if (!Array.isArray(options.exclude)) {
+      options.exclude = [options.exclude];
+    }
 
     return mapObj(
       obj,
